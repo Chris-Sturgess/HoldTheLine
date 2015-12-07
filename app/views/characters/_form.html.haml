@@ -1,0 +1,43 @@
+= form_for @character do |f|
+	- if @character.errors.any?
+		#error_explanation
+			%h2
+				= pluralize(@character.errors.count, "error")
+				prohibited
+				this character from being saved:
+			%ul
+				- @character.errors.full_messages.each do |msg|
+					%li= msg
+
+	%p
+		= f.label :firstName
+		%br/
+		= f.text_field :firstName
+	
+	%p
+		= f.label :lastName
+		%br/
+		= f.text_field :lastName
+	
+	%p
+		=f.label :strength
+		%br/
+		=f.number_field :strength, in: 1..25, step: 1
+
+	%p
+		=f.label :dexterity
+		%br/
+		=f.number_field :dexterity, in: 1..25, step: 1
+
+	%p
+		=f.label :willpower
+		%br/
+		=f.number_field :willpower, in: 1..25, step: 1
+	
+	%p
+		=f.label :constitution
+		%br/
+		=f.number_field :constitution, in: 1..25, step: 1
+
+	%p
+		= f.submit
